@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Role:</strong>
+  <%= @interview.role %>
+</p>
+
+<p>
+  <strong>Interview Date:</strong>
+  <%= @interview.interview_date %>
+</p>
+
+<p>
+  <strong>Start Time:</strong>
+  <%= @interview.start_time %>
+</p>
+
+<p>
+  <strong>End Time:</strong>
+  <%= @interview.end_time %>
+</p>
+
+<p>
+  <strong>Interviewer: </strong>
+  <% user = User.find(interview.interviewer_id) %>
+        <p><%= user.name %> , <%= user.email %></p>
+</p>
+
+<p>
+  <strong>Candidate: </strong>
+  <% user = User.find(interview.candidate_id) %>
+        <p><%= user.name %> , <%= user.email %></p>
+</p>
+
+<%= link_to 'Edit', edit_interview_path(@interview) %> |
+<%= link_to 'Back', interviews_path %>

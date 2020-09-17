@@ -31,6 +31,11 @@
     <%= form.text_area :address %>
   </div>
 
+  <div class="field">
+    <%= form.label :participation %>
+    <%= form.select(:participation, options_for_select( [['interviewer', 'interviewer'], ['candidate', 'candidate']]) ) %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

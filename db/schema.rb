@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_15_095318) do
+ActiveRecord::Schema.define(version: 2020_09_17_145811) do
+
+  create_table "interviews", force: :cascade do |t|
+    t.string "role"
+    t.date "interview_date"
+    t.time "start_time"
+    t.time "end_time"
+    t.integer "interviewer_id", null: false
+    t.integer "candidate_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["candidate_id"], name: "index_interviews_on_candidate_id"
+    t.index ["interviewer_id"], name: "index_interviews_on_interviewer_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -19,6 +32,9 @@ ActiveRecord::Schema.define(version: 2020_09_15_095318) do
     t.text "address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "participation"
   end
 
+  add_foreign_key "interviews", "users", column: "candidate_id"
+  add_foreign_key "interviews", "users", column: "interviewer_id"
 end
