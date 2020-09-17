@@ -3,7 +3,7 @@ class InterviewsController < ApplicationController
     before_action :getinterview, only: [:show, :edit, :update]
 
     def index
-        @interview = Interview.all
+        @interviews = Interview.all
         @user = User.all
     end
     
@@ -44,8 +44,8 @@ class InterviewsController < ApplicationController
     private
 
     def getparticipants
-        @candidate = User.where("usertype = :usertype" , {usertype: "candidate"})
-        @interviewer = User.where("usertype = :usertype" , {usertype: "interviewer"})
+        @candidate = User.where("participation = :participation" , {participation: "candidate"})
+        @interviewer = User.where("participation = :participation" , {participation: "interviewer"})
     end
 
     def getinterview
@@ -53,7 +53,7 @@ class InterviewsController < ApplicationController
     end
 
     def interview_params
-        params.require(:interview).permit(:role, :interview_date, :start_time, :end_time, :interviewer_id, :candidate_id)
+        params.require(:interview).permit(:role, :interview_date, :start_time, :end_time, :interviewer_id, :candidate_id, :resume)
     end
 
 end

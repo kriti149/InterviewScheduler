@@ -12,34 +12,39 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :role %>
+    <%= form.label :Role %>
     <%= form.text_field :role %>
   </div>
 
   <div class="field">
-    <%= form.label :interview_date %>
+    <%= form.label :Interview_Date  %>
     <%= form.date_field :interview_date %>
   </div>
 
   <div class="field">
-    <%= form.label :start_time %>
+    <%= form.label :Start_Time %>
     <%= form.time_field :start_time %>
   </div>
 
   <div class="field">
-    <%= form.label :end_time %>
+    <%= form.label :End_Time %>
     <%= form.time_field :end_time %>
   </div>
 
 
   <div>
-    <%= form.label :interviewer_id %>
-    <%= form.collection_select(:interviewer_id, @interviewer, :id, :username) %>
+    <%= form.label :Interviewer_id %>
+    <%= form.collection_select(:interviewer_id, @interviewer, :id, :name) %>
   </div>
 
   <div>
-    <%= form.label :candidate_id %>
-    <%= form.collection_select(:candidate_id, @candidate, :id, :username) %>
+    <%= form.label :Candidate_id %>
+    <%= form.collection_select(:candidate_id, @candidate, :id, :name) %>
+  </div>
+
+  <div>
+    <%= form.label :Resume %>
+    <%= form.file_field :resume %>
   </div>
 
   <div class="actions">

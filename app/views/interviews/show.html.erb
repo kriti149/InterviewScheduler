@@ -21,15 +21,19 @@
 </p>
 
 <p>
-  <strong>Interviewer: </strong>
-  <% user = User.find(interview.interviewer_id) %>
+  <strong>Interviewer Name and Email: </strong>
+  <% user = User.find(@interview.interviewer_id) %>
         <p><%= user.name %> , <%= user.email %></p>
 </p>
 
 <p>
-  <strong>Candidate: </strong>
-  <% user = User.find(interview.candidate_id) %>
+  <strong>Candidate Name and Email: </strong>
+  <% user = User.find(@interview.candidate_id) %>
         <p><%= user.name %> , <%= user.email %></p>
+</p>
+
+<p>
+  <strong><a href="<%= url_for(@interview.resume)%>">Resume</a></strong>
 </p>
 
 <%= link_to 'Edit', edit_interview_path(@interview) %> |
