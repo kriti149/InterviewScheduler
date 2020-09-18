@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_17_221025) do
+ActiveRecord::Schema.define(version: 2020_09_18_104158) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -35,9 +35,8 @@ ActiveRecord::Schema.define(version: 2020_09_17_221025) do
 
   create_table "interviews", force: :cascade do |t|
     t.string "role"
-    t.date "interview_date"
-    t.time "start_time"
-    t.time "end_time"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.integer "interviewer_id", null: false
     t.integer "candidate_id", null: false
     t.datetime "created_at", precision: 6, null: false

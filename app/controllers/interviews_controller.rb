@@ -1,6 +1,6 @@
 class InterviewsController < ApplicationController
 	before_action :getparticipants, only: [:new, :edit, :create, :update]
-    before_action :getinterview, only: [:show, :edit, :update]
+    before_action :getinterview, only: [:show, :edit, :update, :destroy]
 
     def index
         @interviews = Interview.all
@@ -53,7 +53,7 @@ class InterviewsController < ApplicationController
     end
 
     def interview_params
-        params.require(:interview).permit(:role, :interview_date, :start_time, :end_time, :interviewer_id, :candidate_id, :resume)
+        params.require(:interview).permit(:role, :start_time, :end_time, :interviewer_id, :candidate_id, :resume)
     end
 
 end

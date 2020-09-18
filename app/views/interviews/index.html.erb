@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th>Role</th>
-      <th>Interview Date</th>
       <th>Start Time</th>
       <th>End Time</th>
       <th>Interviewer Name and Email</th>
@@ -20,7 +19,6 @@
     <% @interviews.each do |interview| %>
       <tr>
         <td><%= interview.role %></td>
-        <td><%= interview.interview_date %></td>
         <td><%= interview.start_time %></td>
         <td><%= interview.end_time %></td>
         <td><% user = User.find(interview.interviewer_id) %>
