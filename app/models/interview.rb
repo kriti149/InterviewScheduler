@@ -41,11 +41,11 @@ end
 
 def validate_time_overlapping
 	interviewers = Interview.where(interviewer_id: self.interviewer_id)
-    interviewers.each do |interviewer|
+	interviewers.each do |interviewer|
         start_time = interviewer.start_time
         end_time = interviewer.end_time
         if !self.start_time.nil? and !self.end_time.nil?
-            if ((start_time <= self.start_time  and end_time >= self.end_time) or (start_time >= self.start_time  and start_time <= self.end_time) or (end_time >= self.start_time  and end_time <= self.end_time) or(start_time >= self.start_time  and end_time <= self.end_time))
+            if ((start_time < self.start_time  and end_time > self.end_time) or (start_time > self.start_time  and start_time < self.end_time) or (end_time > self.start_time  and end_time < self.end_time) or(start_time > self.start_time  and end_time < self.end_time))
                 errors.add(:Interview_cannot_be_scheduled, ":INTERVIEWER IS IN ANOTHER INTERVIEW")
         	end
         end
@@ -55,7 +55,7 @@ def validate_time_overlapping
         start_time = candidate.start_time
         end_time = candidate.end_time
         if !self.start_time.nil? and !self.end_time.nil?
-            if ((start_time <= self.start_time  and end_time >= self.end_time) or (start_time >= self.start_time  and start_time <= self.end_time) or (end_time >= self.start_time  and end_time <= self.end_time) or(start_time >= self.start_time  and end_time <= self.end_time))
+            if ((start_time < self.start_time  and end_time > self.end_time) or (start_time > self.start_time  and start_time < self.end_time) or (end_time > self.start_time  and end_time < self.end_time) or(start_time > self.start_time  and end_time < self.end_time))
                 errors.add(:Interview_cannot_be_scheduled, ":CANDIDATE IS IN ANOTHER INTERVIEW")
         	end
         end
