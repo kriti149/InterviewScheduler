@@ -7,9 +7,11 @@ module Api
             def index
                 @interviews = Interview.all
                 @user = User.all
+                render json: @interviews
             end
     
             def show
+                render json: @interview
             end
 
             def new
@@ -22,7 +24,7 @@ module Api
             def create
                 @interview = Interview.new(interview_params)
                 if @interview.save
-                    render json: {status: "SUCCESS",  message: 'Interview Saved'}, status: :ok
+                    render json: @interview
                 else
                     render json: {status: 'ERROR', message: 'Interview Not Saved '}, status: :unprocessable_entity
                 end
@@ -32,11 +34,17 @@ module Api
                 interviewer = @interview.interviewer_id
                 candidate = @interview.candidate_id
                 if @interview.update(interview_params)                         
-                    render json: {status: 'SUCCESS', message: 'Interview Updated'}, status: :ok
+                    render json: @interview
                 else
                     render json: {status: 'ERROR', message: 'Interview Not Updated '}, status: :unprocessable_entity
                 end
             end
+
+            def destroy
+                @interview.destroy
+                render json: {status: 'SUCCESS', message: 'Interview Deleted Successfully '}, status: :ok
+            end
+
        
             private
 
@@ -46,7 +54,7 @@ module Api
             end
 
             def getinterview
-             @interview = Interview.find(params[:id])
+                @interview = Interview.find(params[:id])
             end
 
             def interview_params
@@ -54,3 +62,7 @@ module Api
             end
 
         end
+
+    end
+
+end

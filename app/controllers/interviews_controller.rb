@@ -20,12 +20,9 @@ class InterviewsController < ApplicationController
     def create
         @interview = Interview.new(interview_params)
         if @interview.save
-        	InterviewMailer.with(user_interview: @interview).schedule.deliver_later
-            scheduledtime = @interview.start_time - 5.hours - 30.minutes - 30.minutes
-            if (scheduledtime < Time.now)
-                scheduledtime = scheduledtime + 30.minutes
-            end
-            InterviewMailer.with(user_interview: @interview).reminder.deliver_later!(wait_until: scheduledtime)
+        	DelivermailJob.perform_later(@interview, "schedule")
+            scheduledTime = @interview.start_time - 5.hours - 30.minutes - 30.minutes
+            DelivermailJob.set(wait_until: scheduledTime).perform_later(@interview, "reminder")
             redirect_to @interview, notice: "Interview successfully created!"
         else
             render 'new'
@@ -36,7 +33,7 @@ class InterviewsController < ApplicationController
         interviewer = @interview.interviewer_id
         candidate = @interview.candidate_id
         if @interview.update(interview_params)
-            InterviewMailer.with(user_interview: @interview).update.deliver_later        
+            DelivermailJob.perform_later(@interview, "update")       
             redirect_to @interview, notice: "Interview successfully updated!"
         else
             render 'edit'
