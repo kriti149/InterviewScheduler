@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Interviews</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Role</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th>Interviewer Name and Email</th>
+      <th>Candidate Name and Email</th>
+      <th>Resume</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @interviews.each do |interview| %>
+      <tr>
+        <td><%= interview.role %></td>
+        <td><%= interview.start_time %></td>
+        <td><%= interview.end_time %></td>
+        <td><% user = User.find(interview.interviewer_id) %>
+            <%= user.name %> , <%= user.email %></td>
+        <td><% user = User.find(interview.candidate_id) %>
+            <%= user.name %> , <%= user.email %></td>
+        <td><a href="<%= url_for(interview.resume)%>">resume</a></td>
+        <td><%= link_to 'Show', interview %></td>
+        <td><%= link_to 'Edit', edit_interview_path(interview) %></td>
+        <td><%= link_to 'Destroy', interview, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Interview', new_interview_path %>

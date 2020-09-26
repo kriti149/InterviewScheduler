@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  role: MyString
+  interview_date: 2020-09-17
+  start_time: 2020-09-17 19:36:02
+  end_time: 2020-09-17 19:36:02
+
+two:
+  role: MyString
+  interview_date: 2020-09-17
+  start_time: 2020-09-17 19:36:02
+  end_time: 2020-09-17 19:36:02
